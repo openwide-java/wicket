@@ -232,7 +232,17 @@ public abstract class Session implements IClusterable, IEventSink
 		}
 		this.locale = new AtomicReference<Locale>(locale);
 
-		pageAccessSynchronizer = new PageAccessSynchronizerProvider();
+		pageAccessSynchronizer = newPageAccessSynchronizerProvider();
+	}
+
+	/**
+	 * Creates the page access synchronizer provider when the Session is constructed.
+	 * 
+	 * @return The page access synchronizer provider.
+	 */
+	protected IProvider<PageAccessSynchronizer> newPageAccessSynchronizerProvider()
+	{
+		return new PageAccessSynchronizerProvider();
 	}
 
 	/**
